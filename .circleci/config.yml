@@ -1,6 +1,6 @@
 version: 2.0
 jobs:
-  checkout:
+  preparation:
     docker:
       - image: alpine:latest
     steps:
@@ -244,7 +244,7 @@ wuokflows:
   version: 2
   build_and_test:
     jobs:
-      - checkout
+      - preparation
       - collect rest suites:
           requires:
             - checkout 
