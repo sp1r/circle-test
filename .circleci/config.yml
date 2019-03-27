@@ -247,10 +247,10 @@ workflows:
       - preparation
       - collect rest suites:
           requires:
-            - checkout 
+            - preparation 
       - collect cli suites:
           requires:
-            - checkout
+            - preparation
       - create waves:
           requires:
             - collect rest suites
