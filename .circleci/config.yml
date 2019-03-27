@@ -1,20 +1,378 @@
 version: 2.0
 jobs:
-  build:
+  checkout:
     docker:
       - image: alpine:latest
     steps:
       - checkout
       - run: date
-  test:
+  collect rest suites:
     docker:
       - image: alpine:latest
     steps:
       - checkout
-      - run: whoami
-workflows:
+      - run: date
+  collect cli suites:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  create waves:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave cli-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave cli-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave rest-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave rest-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave rest-2:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave rest-3:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  wave webui-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for cli-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for cli-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for cli-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for cli-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for rest-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for rest-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for rest-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for rest-1:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for rest-2:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for rest-2:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for rest-3:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for rest-3:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy agent for webui-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  deploy stand for webui-0:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (cli-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (cli-1):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (rest-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (rest-1):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (rest-2):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (rest-3):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  run robot (webui-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (cli-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (cli-1):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (rest-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (rest-1):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (rest-2):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (rest-3):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  collect logs (webui-0):
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  results:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+wuokflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test
+      - checkout
+      - collect rest suites:
+          requires:
+            - checkout 
+      - collect cli suites:
+          requires:
+            - checkout
+      - create waves:
+          requires:
+            - collect rest suites
+            - collect cli suites
+      - wave cli-0:
+          requires:
+            - create waves
+      - wave cli-1:
+          requires:
+            - create waves
+      - wave rest-0:
+          requires:
+            - create waves
+      - wave rest-1:
+          requires:
+            - create waves
+      - wave rest-2:
+          requires:
+            - create waves
+      - wave rest-3:
+          requires:
+            - create waves
+      - wave webui-0:
+          requires:
+            - create waves
+      - deploy agent for cli-0:
+          requires:
+            - wave cli-0
+      - deploy stand for cli-0:
+          requires:
+            - wave cli-0
+      - deploy agent for cli-1:
+          requires:
+            - wave cli-1
+      - deploy stand for cli-1:
+          requires:
+            - wave cli-1
+      - deploy agent for rest-0:
+          requires:
+            - wave rest-0
+      - deploy stand for rest-0:
+          requires:
+            - wave rest-0
+      - deploy agent for rest-1:
+          requires:
+            - wave rest-1
+      - deploy stand for rest-1:
+          requires:
+            - wave rest-1
+      - deploy agent for rest-2:
+          requires:
+            - wave rest-2
+      - deploy stand for rest-2:
+          requires:
+            - wave rest-2
+      - deploy agent for rest-3:
+          requires:
+            - wave rest-3
+      - deploy stand for rest-3:
+          requires:
+            - wave rest-3
+      - deploy agent for webui-0:
+          requires:
+            - wave webui-0
+      - deploy stand for webui-0:
+          requires:
+            - wave webui-0
+      - run robot (cli-0):
+          requires:
+            - deploy agent for cli-0
+            - deploy stand for cli-0
+      - run robot (cli-1):
+          requires:
+            - deploy agent for cli-1
+            - deploy stand for cli-1
+      - run robot (rest-0):
+          requires:
+            - deploy agent for rest-0
+            - deploy stand for rest-0
+      - run robot (rest-1):
+          requires:
+            - deploy agent for rest-1
+            - deploy stand for rest-1
+      - run robot (rest-2):
+          requires:
+            - deploy agent for rest-2
+            - deploy stand for rest-2
+      - run robot (rest-3):
+          requires:
+            - deploy agent for rest-3
+            - deploy stand for rest-3
+      - run robot (webui-0):
+          requires:
+            - deploy agent for webui-0
+            - deploy stand for webui-0
+      - collect logs (cli-0):
+          requires:
+            - run robot (cli-0)
+      - collect logs (cli-1):
+          requires:
+            - run robot (cli-1)
+      - collect logs (rest-0):
+          requires:
+            - run robot (rest-0)
+      - collect logs (rest-1):
+          requires:
+            - run robot (rest-1)
+      - collect logs (rest-2):
+          requires:
+            - run robot (rest-2)
+      - collect logs (rest-3):
+          requires:
+            - run robot (rest-3)
+      - collect logs (webui-0):
+          requires:
+            - run robot (webui-0)
+      - results:
+          requires:
+            - collect logs (cli-0)
+            - collect logs (cli-1)
+            - collect logs (rest-0)
+            - collect logs (rest-1)
+            - collect logs (rest-2)
+            - collect logs (rest-3)
+            - collect logs (webui-0)
