@@ -1,0 +1,20 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: date
+  test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: whoami
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
