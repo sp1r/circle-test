@@ -240,7 +240,7 @@ jobs:
     steps:
       - checkout
       - run: date
-wuokflows:
+workflows:
   version: 2
   build_and_test:
     jobs:
